@@ -31,6 +31,12 @@ HixMQTT g_mqtt(Secret::WIFI_SSID,
                g_config.getDeviceTag());
 
 
+void resetWithMessage(const char * szMessage) {
+    Serial.println(szMessage);
+    delay(2000);
+    ESP.reset();
+}
+
 void setup() {
     Serial.begin(115200);
     Serial.print(F("Startup "));
@@ -42,11 +48,7 @@ void setup() {
     WiFi.disconnect();
     // setup display
     Serial.println(F("Setting up display"));
-    if (!g_display.begin()) {
-        Serial.println("SSD1306 allocation failed, resetting");
-        delay(2000);
-        ESP.reset();
-    }
+    if (!g_display.begin()) resetWithMessage("SSD1306 allocation failed, resetting");
     g_display.drawDisplayVersion(g_config.getDeviceType(), g_config.getDeviceVersion());
     delay(2000);
     // setup CO2 sensor
@@ -57,18 +59,10 @@ void setup() {
     g_mhz19.autoCalibration();
     // configure MQTT
     Serial.println(F("Setting up MQTT"));
-    if (!g_mqtt.begin()) {
-        Serial.println("MQTT allocation failed, resetting");
-        delay(2000);
-        ESP.reset();
-    }
+    if (!g_mqtt.begin()) resetWithMessage("MQTT allocation failed, resetting");
     //setup SPIFFS
     Serial.println(F("Setting up SPIFFS"));
-    if (!SPIFFS.begin()) {
-        Serial.println("SPIFFS initialization failed, resetting");
-        delay(2000);
-        ESP.reset();
-    }
+    if (!SPIFFS.begin()) resetWithMessage("SPIFFS initialization failed, resetting");
     //setup the server
     Serial.println(F("Setting up web server"));
     g_webServer.begin();
