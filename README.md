@@ -41,6 +41,33 @@ A WIFI connected CO2 sensor based on the ESP8266 microcontroller and MH-Z19 CO2 
                      │
                      └─── influxdb
 ```
+#### `influxdb` topic publishing contents
+To make the import in the influxdb from Node-RED as easy as possible the `influxdb` topic publishes a json document that can immediatly imported using the `influxdb in` node.
+They only thing required is to convert it to a json object via the `To json` node.
+![Node-RED influxDB import](doc/nodered.png)
+
+Following the `influxdb in` node the json is an array where:
+
+- the first element contains the measurements
+- the second element contains the tags
+ 
+
+```
+  [
+   {
+      "co2"           : 4564,
+      "temperature"   : 45,
+      "wifi_rssi"     : -45
+   },
+   {
+      "device_type"   : "sensor1",
+      "device_version": "device2",
+      "device_tag"    : "1"
+      "room"          : "living",
+      "wifi_ssid"     : "test"
+   }
+  ]
+```
 
 ### Subscribing
 
