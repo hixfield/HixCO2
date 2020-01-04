@@ -60,11 +60,11 @@ Following the `influxdb in` node the json is an array where:
       "wifi_rssi"     : -45
    },
    {
-      "device_type"   : "sensor1",
-      "device_version": "device2",
-      "device_tag"    : "1"
-      "room"          : "living",
-      "wifi_ssid"     : "test"
+      "device_type"   : "HixCO2",
+      "device_version": "2.5.8",
+      "device_tag"    : "at_door"
+      "room"          : "office",
+      "wifi_ssid"     : "public_wifi"
    }
   ]
 ```
