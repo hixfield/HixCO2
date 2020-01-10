@@ -94,7 +94,7 @@ void setup() {
     Serial.println(F("Setting up CO2 sensor"));
     g_mhz19Serial.begin(9600);
     g_mhz19.begin(g_mhz19Serial);
-    g_mhz19.setRange(2000);
+    g_mhz19.setRange(5000);
     g_mhz19.autoCalibration();
     // configure MQTT
     Serial.println(F("Setting up MQTT"));
